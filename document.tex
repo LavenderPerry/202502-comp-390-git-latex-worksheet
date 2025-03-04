@@ -86,22 +86,19 @@ A---B---C---D
 \end{verbatim}
 \begin{quote}
     \begin{verbatim}
-    git add A # or any file(s)
+    # Add commands excluded
     git commit -m "A"
-    git add B
     git commit -m "B"
-    git add C
     git commit -m "C"
-    git add D
     git commit -m "D"
     \end{verbatim}
 \end{quote}
 \item If you are currently at commit D above, how would you recover code from commit B? What sequence of commands/actions would let you do so? You may give a sequence of \texttt{git} command-line commands, or describe (with screenshots) how you would do this in your preferred graphical git interface. Assume the commit hashes are AAAAAA..., BBBBBB..., etc.
-    \begin{quote}
-        \begin{verbatim}
-        git checkout BBBBBB
-        \end{verbatim}
-    \end{quote}
+\begin{quote}
+    \begin{verbatim}
+    git checkout BBBBBB
+    \end{verbatim}
+\end{quote}
 \item Imagine you created a git repository for your project, but only commit your changes once a week on Sundays. You got your code working on Tuesday, but then broke your code on Friday. What can you do to get the working version of your code back?
     \begin{quote}
         Since the working version of the code was not committed,
@@ -116,29 +113,104 @@ A---B---C---D
 
 \begin{enumerate}
 \item What is a branch? Why are they useful?
+    \begin{quote}
+        A branch is a timeline of commits.
+        They are useful for working on features concurrently.
+    \end{quote}
 \item Starting with an empty repository, what sequence of commands/actions would result in the following commit graph? You may give a sequence of \texttt{git} command-line commands, or describe (with screenshots) how you would do this in your preferred graphical git interface.
 \begin{verbatim}
 A---B---C---D
      \
       E---F
 \end{verbatim}
+\begin{quote}
+    \begin{verbatim}
+    # Add commands excluded
+    git commit -m "A"
+    git commit -m "B"
+    git commit -m "C"
+    git commit -m "D"
+    git checkout -b b2 BBBBBB
+    git commit -m "E"
+    git commit -m "F"
+    \end{verbatim}
+\end{quote}
 \item Why is a merge? Why are they useful?
+\begin{quote}
+    A merge combines the changes of one branch into another.
+    They are useful for combining changes you made on separate branches.
+\end{quote}
 \item Imagine you are currently at commit D above. What sequence of commands/actions would result in the following commit graph? You may give a sequence of \texttt{git} commands, or describe (with screenshots) how you would do this in your preferred graphical git interface.
 \begin{verbatim}
 A---B---C---D---G
      \         /
       E---F---/
 \end{verbatim}
+\begin{quote}
+    \begin{verbatim}
+    git merge b2 -m "G"
+    \end{verbatim}
+\end{quote}
 \item What is a merge conflict? When do they occur?
+\begin{quote}
+    A merge conflict is when git can't figure out how to merge two branches
+    together. They occur when both branches modify the same part of a file.
+\end{quote}
 \item Starting with an empty repository, despite a sequence of commands/actions that would result in a merge conflict. Include the exact edits and \texttt{git} commands or screenshots of the graphical git interface. Include the output or screenshot that shows the resulting merge conflict.
+    \begin{quote}
+        Start with file a. contains: a
+        \begin{verbatim}
+        git commit -m "a"
+        \end{verbatim}
+        Change contents of file a to: b
+        \begin{verbatim}
+        git commit -m "b"
+        git checkout -b b2 AAAAAA
+        \end{verbatim}
+        Change contents of file a to: c
+        \begin{verbatim}
+        git commit -m "c"
+        git checkout main
+        git merge b2
+        \end{verbatim}
+        Output (lines broken up to fit in PDF):
+        \begin{verbatim}
+        Auto-merging a
+
+        CONFLICT (content):
+        Merge conflict in a
+
+        Automatic merge failed;
+        fix conflicts and then
+        commit the result.
+        \end{verbatim}
+    \end{quote}
 \end{enumerate}
 
 \subsection{Remotes}
 
 \begin{enumerate}
 \item What is a remote?
+    \begin{quote}
+        A remote is an external server that hosts the repository, where changes
+        can be pushed to and pulled from.
+    \end{quote}
 \item What does pushing and pulling do?
+    \begin{quote}
+        Pushing makes the remote contain any new commits
+        you made on your local copy. Pulling takes any new commits from the
+        remote and puts them onto your local copy.
+    \end{quote}
 \item Imagine you created a git repository for your project on your laptop and commit regularly, but only push your code to GitHub once a week on Sundays. Your laptop caught on fire on Friday. What can you do to get your code back?
+    \begin{quote}
+        It depends. Did the fire burn the entire laptop, or is the storage still
+        recoverable? Assuming the storage is not recoverable, the newest version
+        of the code you can get is from Sunday. This is why you should make
+        regular backups of your files, as there may be more important things on
+        that laptop that you could have lost. Admittedly I am really bad about
+        that. Also, pushing whenever there are changes that others may want to
+        see is good.
+    \end{quote}
 \end{enumerate}
 
 \section{\LaTeX}
