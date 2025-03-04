@@ -70,13 +70,46 @@ This worksheet is due March 1, 2025 at midnight, to be submitted as a GitHub rep
 
 \begin{enumerate}
 \item What is the difference between adding a file to the staging area and committing a file?
+    \begin{quote}
+        Adding a file to the staging area sets it up to be committed, while
+        committing a file makes a commit with the file.
+    \end{quote}
 \item What is a commit message, and why is it important for them to be meaningful?
+    \begin{quote}
+        A commit message is a message to describe the commit. They are important
+        to identify what the commit does and why it exists, as well as easily
+        identifying past commits.
+    \end{quote}
 \item Starting with an empty repository, what sequence of commands/actions would result in the following commit graph? You may give a sequence of \texttt{git} commands, or describe (with screenshots) how you would do this in your preferred graphical git interface.
 \begin{verbatim}
 A---B---C---D
 \end{verbatim}
+\begin{quote}
+    \begin{verbatim}
+    git add A # or any file(s)
+    git commit -m "A"
+    git add B
+    git commit -m "B"
+    git add C
+    git commit -m "C"
+    git add D
+    git commit -m "D"
+    \end{verbatim}
+\end{quote}
 \item If you are currently at commit D above, how would you recover code from commit B? What sequence of commands/actions would let you do so? You may give a sequence of \texttt{git} command-line commands, or describe (with screenshots) how you would do this in your preferred graphical git interface. Assume the commit hashes are AAAAAA..., BBBBBB..., etc.
+    \begin{quote}
+        \begin{verbatim}
+        git checkout BBBBBB
+        \end{verbatim}
+    \end{quote}
 \item Imagine you created a git repository for your project, but only commit your changes once a week on Sundays. You got your code working on Tuesday, but then broke your code on Friday. What can you do to get the working version of your code back?
+    \begin{quote}
+        Since the working version of the code was not committed,
+        the only two options are to try to change the files back from the Friday
+        version, or revert the commit to last Sunday and recreate all the
+        progress up to Tuesday. This is why I commit my code pretty much
+        whenever I change it.
+    \end{quote}
 \end{enumerate}
 
 \subsection{Branching and Merging}
